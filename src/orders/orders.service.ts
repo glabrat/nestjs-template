@@ -5,13 +5,13 @@ import { Model } from 'mongoose'
 import { User } from 'src/users/users.model'
 
 import { OrderInput, UpdateOrderInput } from './orders.input'
-import { Order } from './orders.model'
+import { Order, OrderDocument } from './orders.model'
 
 @Injectable()
 export class OrdersService {
   constructor(
     @InjectModel(Order.name)
-    private readonly orderModel: Model<Order>,
+    private readonly orderModel: Model<OrderDocument>,
   ) {}
 
   async create(createItemDto: OrderInput): Promise<Order> {

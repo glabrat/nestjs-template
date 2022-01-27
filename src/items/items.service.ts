@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
 import { ItemInput, UpdateItemInput } from './items.input'
-import { Item } from './items.model'
+import { Item, ItemDocument } from './items.model'
 
 @Injectable()
 export class ItemsService {
   constructor(
-    @InjectModel(Item.name) private readonly itemModel: Model<Item>,
+    @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
   ) {}
 
   async create(createItemDto: ItemInput): Promise<Item> {

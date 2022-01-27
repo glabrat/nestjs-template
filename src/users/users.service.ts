@@ -4,12 +4,12 @@ import * as bcryptjs from 'bcryptjs'
 import { Model } from 'mongoose'
 
 import { UpdateUserInput, UserInput } from './users.input'
-import { User } from './users.model'
+import { User, UserDocument } from './users.model'
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {}
 
   async create(input: UserInput): Promise<User> {
