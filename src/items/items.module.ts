@@ -3,13 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose'
 
 import { OrdersModule } from 'src/orders/orders.module'
 
-import { Item } from './items.model'
+import { Item, ItemSchema } from './items.model'
 import { ItemsResolver } from './items.resolver'
 import { ItemsService } from './items.service'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Item.name, schema: Item }]),
+    MongooseModule.forFeature([{ name: Item.name, schema: ItemSchema }]),
     forwardRef(() => OrdersModule),
   ],
   providers: [ItemsService, ItemsResolver],

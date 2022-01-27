@@ -5,7 +5,8 @@ import {
   ObjectType,
   registerEnumType,
 } from '@nestjs/graphql'
-import { Prop } from '@nestjs/mongoose'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Document, Schema as MongooseSchema } from 'mongoose'
 
 import { Roles } from 'src/app.roles'
 import { Order } from 'src/orders/orders.model'
@@ -16,6 +17,7 @@ registerEnumType(Roles, {
 })
 
 @ObjectType()
+@Schema()
 export class User {
   @Field(() => ID)
   id!: string
@@ -38,3 +40,7 @@ export class User {
 
   orders?: Order[]
 }
+
+export type UserDocument = User & Document
+
+export const UserSchema = SchemaFactory.createForClass(User)

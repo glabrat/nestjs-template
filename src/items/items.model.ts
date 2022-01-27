@@ -1,9 +1,11 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
-import { Prop } from '@nestjs/mongoose'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Document, Schema as MongooseSchema } from 'mongoose'
 
 import { Order } from 'src/orders/orders.model'
 
 @ObjectType()
+@Schema()
 export class Item {
   @Field(() => ID)
   id: string
@@ -19,3 +21,7 @@ export class Item {
 
   orders?: Order[]
 }
+
+export type ItemDocument = Item & Document
+
+export const ItemSchema = SchemaFactory.createForClass(Item)
