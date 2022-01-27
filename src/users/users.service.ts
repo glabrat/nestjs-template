@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
+import { InjectModel } from '@nestjs/mongoose'
 import * as bcryptjs from 'bcryptjs'
-import { InjectModel } from 'nestjs-typegoose'
+import { Model } from 'mongoose'
 
 import { UpdateUserInput, UserInput } from './users.input'
 import { User } from './users.model'
@@ -9,7 +9,7 @@ import { User } from './users.model'
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel(User) private readonly userModel: ReturnModelType<typeof User>,
+    @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
   async create(input: UserInput): Promise<User> {

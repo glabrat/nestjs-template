@@ -1,5 +1,6 @@
 import { Injectable, Scope } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
+import * as NestJSTypegoose from '@nestjs/mongoose'
 import {
   ConnectionNotFoundError,
   HealthCheckError,
@@ -12,7 +13,6 @@ import {
   promiseTimeout,
   TimeoutError as PromiseTimeoutError,
 } from '@nestjs/terminus/dist/utils/promise-timeout'
-import * as NestJSTypegoose from 'nestjs-typegoose'
 
 export interface TypegoosePingCheckSettings {
   /**
@@ -48,10 +48,7 @@ export class TypegooseHealthIndicator extends HealthIndicator {
    * Checks if the dependant packages are present
    */
   private checkDependantPackages() {
-    checkPackages(
-      ['nestjs-typegoose', '@typegoose/typegoose'],
-      this.constructor.name,
-    )
+    checkPackages(['@nestjs/mongoose'], this.constructor.name)
   }
 
   /**
@@ -59,7 +56,7 @@ export class TypegooseHealthIndicator extends HealthIndicator {
    */
   private getContextConnection(): any | null {
     const { getConnectionToken } = import(
-      'nestjs-typegoose'
+      '@nestjs/mongoose'
     ) as unknown as typeof NestJSTypegoose
 
     try {

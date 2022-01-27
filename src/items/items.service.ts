@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
-import { InjectModel } from 'nestjs-typegoose'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
 
 import { ItemInput, UpdateItemInput } from './items.input'
 import { Item } from './items.model'
@@ -8,7 +8,7 @@ import { Item } from './items.model'
 @Injectable()
 export class ItemsService {
   constructor(
-    @InjectModel(Item) private readonly itemModel: ReturnModelType<typeof Item>,
+    @InjectModel(Item.name) private readonly itemModel: Model<Item>,
   ) {}
 
   async create(createItemDto: ItemInput): Promise<Item> {

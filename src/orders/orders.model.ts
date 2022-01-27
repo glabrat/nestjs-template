@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
-import { prop } from '@typegoose/typegoose'
+import { Prop } from '@nestjs/mongoose'
 
 import { Item } from 'src/items/items.model'
 import { User } from 'src/users/users.model'
@@ -15,12 +15,12 @@ export class Order {
   @Field(() => Item)
   item: Item
 
-  @prop()
+  @Prop()
   userId: string
 
-  @prop()
+  @Prop()
   itemId: string
 
-  @prop()
+  @Prop()
   quantity: number
 }

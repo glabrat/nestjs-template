@@ -1,12 +1,10 @@
-import { RolesBuilder } from 'nestjs-role-protected'
-
 export enum Roles {
   USER = 'USER',
   ADMIN = 'ADMIN',
   GUEST = 'GUEST',
 }
 
-const rolesPermissions = {
+export const rolesPermissions = {
   [Roles.ADMIN]: {
     Order: {
       'create:any': ['*'],
@@ -30,5 +28,3 @@ const rolesPermissions = {
     },
   },
 }
-
-export const roles = new RolesBuilder(rolesPermissions)

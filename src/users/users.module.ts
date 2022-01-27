@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common'
-import { TypegooseModule } from 'nestjs-typegoose'
+import { MongooseModule } from '@nestjs/mongoose'
 
 import { OrdersModule } from 'src/orders/orders.module'
 
@@ -9,9 +9,7 @@ import { UsersService } from './users.service'
 
 @Module({
   imports: [
-    TypegooseModule.forFeature([
-      { typegooseClass: User, schemaOptions: { timestamps: true } },
-    ]),
+    MongooseModule.forFeature([{ name: User.name, schema: User }]),
     forwardRef(() => OrdersModule),
   ],
   providers: [UsersService, UsersResolver],

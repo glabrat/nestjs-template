@@ -7,7 +7,6 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql'
-import { CanDoAny, RoleProtected } from 'nestjs-role-protected'
 
 import { GqlAuthGuard } from 'src/auth/graphql-auth.guard'
 import { CurrentUser } from 'src/helpers/decorators/decorators'
@@ -49,29 +48,21 @@ export class OrdersResolver {
     return this.ordersService.create({ ...input, userId: user.id })
   }
 
-  @RoleProtected({
-    action: 'update',
-  })
   @Mutation(() => Order)
   async updateOrder(
     @Args('id') id: string,
     @Args('input') input: UpdateOrderInput,
     @CurrentUser() user: User,
-    @CanDoAny() canDoAny: () => boolean,
   ): Promise<Order> {
-    return this.ordersService.update(id, user, input, canDoAny())
+    return this.ordersService.update(id, user, input, false)
   }
 
-  @RoleProtected({
-    action: 'delete',
-  })
   @Mutation(() => Order)
   async deleteOrder(
     @Args('id') id: string,
     @CurrentUser() user: User,
-    @CanDoAny() canDoAny: () => boolean,
   ): Promise<Order> {
-    return this.ordersService.delete(id, user, canDoAny())
+    return this.ordersService.delete(id, user, false)
   }
 
   @ResolveField()

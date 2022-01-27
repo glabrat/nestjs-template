@@ -5,7 +5,7 @@ import {
   ObjectType,
   registerEnumType,
 } from '@nestjs/graphql'
-import { prop } from '@typegoose/typegoose'
+import { Prop } from '@nestjs/mongoose'
 
 import { Roles } from 'src/app.roles'
 import { Order } from 'src/orders/orders.model'
@@ -20,20 +20,20 @@ export class User {
   @Field(() => ID)
   id!: string
 
-  @prop({ unique: true })
+  @Prop({ unique: true })
   email: string
 
   @HideField()
-  @prop({ required: true })
+  @Prop({ required: true })
   password: string
 
-  @prop()
+  @Prop()
   firstName?: string
 
-  @prop()
+  @Prop()
   lastName?: string
 
-  @prop({ type: String, enum: Roles, default: Roles.USER })
+  @Prop({ type: String, enum: Roles, default: Roles.USER })
   roles?: Roles[]
 
   orders?: Order[]
