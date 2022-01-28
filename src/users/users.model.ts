@@ -9,6 +9,7 @@ import { prop } from '@typegoose/typegoose'
 
 import { Roles } from 'src/app.roles'
 import { Order } from 'src/orders/orders.model'
+import { BaseModel } from 'src/shared/base.model'
 
 registerEnumType(Roles, {
   name: 'Roles',
@@ -16,7 +17,7 @@ registerEnumType(Roles, {
 })
 
 @ObjectType()
-export class User {
+export class User extends BaseModel {
   @Field(() => ID)
   id!: string
 

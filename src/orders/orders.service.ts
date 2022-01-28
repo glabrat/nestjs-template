@@ -2,17 +2,20 @@ import { Injectable } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 
+import { BaseService } from 'src/shared/base.service'
 import { User } from 'src/users/users.model'
 
 import { OrderInput, UpdateOrderInput } from './orders.input'
 import { Order } from './orders.model'
 
 @Injectable()
-export class OrdersService {
+export class OrdersService extends BaseService<Order> {
   constructor(
     @InjectModel(Order)
     private readonly orderModel: ReturnModelType<typeof Order>,
-  ) {}
+  ) {
+    super(orderModel)
+  }
 
   async create(createItemDto: OrderInput): Promise<Order> {
     const createdItem = new this.orderModel(createItemDto)

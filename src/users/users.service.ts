@@ -3,14 +3,18 @@ import { ReturnModelType } from '@typegoose/typegoose'
 import * as bcryptjs from 'bcryptjs'
 import { InjectModel } from 'nestjs-typegoose'
 
+import { BaseService } from 'src/shared/base.service'
+
 import { UpdateUserInput, UserInput } from './users.input'
 import { User } from './users.model'
 
 @Injectable()
-export class UsersService {
+export class UsersService extends BaseService<User> {
   constructor(
     @InjectModel(User) private readonly userModel: ReturnModelType<typeof User>,
-  ) {}
+  ) {
+    super(userModel)
+  }
 
   async create(input: UserInput): Promise<User> {
     const createdItem = new this.userModel(input)

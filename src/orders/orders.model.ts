@@ -2,10 +2,11 @@ import { Field, ID, ObjectType } from '@nestjs/graphql'
 import { prop } from '@typegoose/typegoose'
 
 import { Item } from 'src/items/items.model'
+import { BaseModel } from 'src/shared/base.model'
 import { User } from 'src/users/users.model'
 
 @ObjectType()
-export class Order {
+export class Order extends BaseModel {
   @Field(() => ID)
   id: string
 

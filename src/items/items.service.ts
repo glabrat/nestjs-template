@@ -2,14 +2,18 @@ import { Injectable } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 
+import { BaseService } from 'src/shared/base.service'
+
 import { ItemInput, UpdateItemInput } from './items.input'
 import { Item } from './items.model'
 
 @Injectable()
-export class ItemsService {
+export class ItemsService extends BaseService<Item> {
   constructor(
     @InjectModel(Item) private readonly itemModel: ReturnModelType<typeof Item>,
-  ) {}
+  ) {
+    super(itemModel)
+  }
 
   async create(createItemDto: ItemInput): Promise<Item> {
     const createdItem = new this.itemModel(createItemDto)

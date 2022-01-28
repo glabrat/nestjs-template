@@ -7,8 +7,8 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql'
-import { RoleProtected } from 'nestjs-role-protected'
 
+// import { RoleProtected } from 'nestjs-role-protected'
 import { GqlAuthGuard } from 'src/auth/graphql-auth.guard'
 import { Metadata } from 'src/helpers/metadata.model'
 import { Order } from 'src/orders/orders.model'
@@ -49,10 +49,10 @@ export class ItemsResolver {
     return this.itemsService.create(input)
   }
 
-  @RoleProtected({
-    action: 'update',
-    possession: 'any',
-  })
+  // @RoleProtected({
+  //   action: 'update',
+  //   possession: 'any',
+  // })
   @Mutation(() => Item)
   async updateItem(
     @Args('id') id: string,
@@ -61,10 +61,10 @@ export class ItemsResolver {
     return this.itemsService.update(id, input)
   }
 
-  @RoleProtected({
-    action: 'delete',
-    possession: 'any',
-  })
+  // @RoleProtected({
+  //   action: 'delete',
+  //   possession: 'any',
+  // })
   @Mutation(() => Item)
   async deleteItem(@Args('id') id: string): Promise<Item> {
     return this.itemsService.delete(id)
