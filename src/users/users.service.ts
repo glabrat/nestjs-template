@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
 import { ReturnModelType } from '@typegoose/typegoose'
 import * as bcryptjs from 'bcryptjs'
-import { InjectModel } from 'nestjs-typegoose'
 
 import { BaseService } from 'src/shared/base.service'
 
@@ -11,7 +11,8 @@ import { User } from './users.model'
 @Injectable()
 export class UsersService extends BaseService<User> {
   constructor(
-    @InjectModel(User) private readonly userModel: ReturnModelType<typeof User>,
+    @InjectModel(User.modelName)
+    private readonly userModel: ReturnModelType<typeof User>,
   ) {
     super(userModel)
   }

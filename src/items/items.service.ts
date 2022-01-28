@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
 import { ReturnModelType } from '@typegoose/typegoose'
-import { InjectModel } from 'nestjs-typegoose'
 
 import { BaseService } from 'src/shared/base.service'
 
@@ -10,7 +10,8 @@ import { Item } from './items.model'
 @Injectable()
 export class ItemsService extends BaseService<Item> {
   constructor(
-    @InjectModel(Item) private readonly itemModel: ReturnModelType<typeof Item>,
+    @InjectModel(Item.modelName)
+    private readonly itemModel: ReturnModelType<typeof Item>,
   ) {
     super(itemModel)
   }

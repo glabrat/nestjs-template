@@ -10,7 +10,7 @@ import { OrdersService } from './orders.service'
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Order.name, schema: Order.schema }]),
+    MongooseModule.forFeature([{ name: Order.name, schema: Order.schemaNoTs }]),
     forwardRef(() => UsersModule),
     forwardRef(() => ItemsModule),
   ],

@@ -19,6 +19,15 @@ export abstract class BaseModel {
     })
   }
 
+  static get schemaNoTs(): Schema {
+    return buildSchema(this as any, {
+      toJSON: {
+        getters: true,
+        virtuals: true,
+      },
+    })
+  }
+
   static get modelName(): string {
     return this.name
   }
