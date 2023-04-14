@@ -5,6 +5,9 @@
   "author": "Rokket Labs <tomas@rokketlabs.com>",
   "private": true,
   "license": "MIT",
+  "engines": {
+    "node": "^16.19.0 || ^18.10.0"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "prestart": "rimraf dist",

@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
+    'rokket-labs',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
