@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-RUN npm i -g pnpm
+RUN npm i -g pnpm@8.2.0
 
 COPY . .
 
